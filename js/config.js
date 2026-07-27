@@ -11,6 +11,15 @@ const CONFIG = {
   // Swap the file at this path (or change the path) to update the anthem.
   audioSrc: "audio/razors-edge-anthem.mp3",
 
+  // Sales-page hero player only plays this window of the file above (in
+  // seconds), then loops back to the start — a public preview, not the
+  // whole song. The full track only lives behind the purchase, at
+  // fullSongDownloadSrc below. Set previewEndSeconds to null to disable
+  // and play the full file (e.g. once a dedicated short preview file is
+  // used for audioSrc instead).
+  previewStartSeconds: 0,
+  previewEndSeconds: 30,
+
   cityState: "Newark, Delaware",
   address: "1450 Capital Trail, Newark, Delaware 19711",
 

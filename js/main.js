@@ -52,6 +52,12 @@ function initPlayer() {
   let duration = 0;
   let seeking = false;
 
+  // Sales-page preview window: only this slice of the file plays here.
+  // The unclipped file is only ever linked from the post-purchase page.
+  const previewStart = CONFIG.previewStartSeconds || 0;
+  const previewEnd = typeof CONFIG.previewEndSeconds === "number" ? CONFIG.previewEndSeconds : null;
+  const previewEnabled = previewEnd !== null && previewEnd > previewStart;
+
   function formatTime(seconds) {
     if (!isFinite(seconds) || seconds < 0) seconds = 0;
     const m = Math.floor(seconds / 60);
@@ -102,6 +108,9 @@ function initPlayer() {
   }
 
   function play() {
+    if (previewEnabled && (audio.currentTime < previewStart || audio.currentTime >= previewEnd)) {
+      audio.currentTime = previewStart;
+    }
     audio.play().catch(() => {
       /* Playback can be blocked until a user gesture; the click itself is the gesture. */
     });
@@ -123,25 +132,49 @@ function initPlayer() {
   });
 
   restartBtn.addEventListener("click", () => {
-    audio.currentTime = 0;
+    audio.currentTime = previewStart;
     setProgress(0);
     seek.value = 0;
     timeElapsed.textContent = formatTime(0);
   });
 
+  let resetPendingAfterPause = false;
+
   audio.addEventListener("play", () => setPlayingUI(true));
-  audio.addEventListener("pause", () => setPlayingUI(false));
+  audio.addEventListener("pause", () => {
+    setPlayingUI(false);
+    // Only seek back to the preview start once pause has genuinely taken
+    // effect — seeking immediately alongside pause() can race the "resume
+    // after seek" behavior a playing element applies when its seek settles,
+    // undoing the pause.
+    if (resetPendingAfterPause) {
+      resetPendingAfterPause = false;
+      audio.currentTime = previewStart;
+      setProgress(0);
+      seek.value = 0;
+      timeElapsed.textContent = formatTime(0);
+    }
+  });
 
   audio.addEventListener("loadedmetadata", () => {
-    duration = audio.duration || 0;
+    duration = previewEnabled ? previewEnd - previewStart : audio.duration || 0;
     timeTotal.textContent = formatTime(duration);
+    if (previewEnabled) audio.currentTime = previewStart;
   });
 
   audio.addEventListener("timeupdate", () => {
     if (seeking) return;
-    timeElapsed.textContent = formatTime(audio.currentTime);
+
+    if (previewEnabled && audio.currentTime >= previewEnd) {
+      resetPendingAfterPause = true;
+      audio.pause();
+      return;
+    }
+
+    const elapsed = previewEnabled ? Math.max(0, audio.currentTime - previewStart) : audio.currentTime;
+    timeElapsed.textContent = formatTime(elapsed);
     if (duration > 0) {
-      const fraction = audio.currentTime / duration;
+      const fraction = elapsed / duration;
       seek.value = String(Math.round(fraction * SEEK_MAX));
       setProgress(fraction);
     }
@@ -169,7 +202,8 @@ function initPlayer() {
 
   seek.addEventListener("change", () => {
     if (duration > 0) {
-      audio.currentTime = (Number(seek.value) / SEEK_MAX) * duration;
+      const offset = previewEnabled ? previewStart : 0;
+      audio.currentTime = offset + (Number(seek.value) / SEEK_MAX) * duration;
     }
     seeking = false;
   });
