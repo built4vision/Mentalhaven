@@ -1227,3 +1227,67 @@ textarea {
 .thanks-support a {
   color: var(--accent);
 }
+
+/* ==========================================================================
+   SCHEDULE PAGE — proposed-time picker
+   ========================================================================== */
+.slot-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 0 0 1.75rem;
+}
+
+.slot-day__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--cream);
+  margin: 0 0 0.6rem;
+}
+
+.slot-day__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.slot-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.slot-option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.slot-option:has(input:checked) {
+  border-color: var(--accent);
+  color: var(--cream);
+  background: rgba(217, 196, 138, 0.1);
+}
+.slot-option:has(input:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.slot-empty {
+  color: var(--cream-muted);
+  font-size: 0.9rem;
+}
+
+.schedule-note {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--cream-muted);
+  margin: 0.85rem 0 0;
+}
