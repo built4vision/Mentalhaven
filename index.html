@@ -34,8 +34,9 @@
 
   <!-- ============================================================
        HERO
-       No pricing, no buy buttons — the wordmark and the play
-       button must be visible without scrolling on mobile.
+       A cinematic, staged build with no pricing or sales language.
+       Built4Vision is not named here — it's introduced later, after
+       the song, in the "why we made this" section.
   ============================================================ -->
   <header class="hero" id="main">
     <div class="hero__bg" aria-hidden="true"></div>
@@ -55,22 +56,25 @@
       </p>
 
       <h1 class="hero__headline" data-animate>For <span data-config="businessName">Razors Edge</span>.</h1>
-      <p class="hero__by" data-animate>A custom creative concept by <span data-config="builtByName">Built4Vision</span>.</p>
+      <p class="hero__by" data-animate>A custom creative concept.</p>
 
-      <div class="hero__intro" data-animate>
-        <p class="hero__intro-lead">This isn't an advertisement.</p>
-        <p class="hero__intro-body">
-          We came across <span data-config="businessName">Razors Edge</span>, saw the passion behind the
-          business, and decided to create something.
-        </p>
+      <div class="hero__build" aria-label="How this came together">
+        <p data-animate style="transition-delay: 0.05s">We spent time learning about your business.</p>
+        <p data-animate style="transition-delay: 0.22s">The new location.</p>
+        <p data-animate style="transition-delay: 0.39s">The craftsmanship.</p>
+        <p data-animate style="transition-delay: 0.56s">The people.</p>
+        <p data-animate style="transition-delay: 0.73s">The faith.</p>
       </div>
 
+      <p class="hero__turn" data-animate style="transition-delay: 0.95s">Then we turned that story into music.</p>
+
       <!-- ============================================================
-           CUSTOM AUDIO PLAYER
-           Swap the audio source in js/main.js CONFIG.audioSrc.
-           No autoplay — playback starts only on user action.
+           CUSTOM AUDIO PLAYER — styled as a record release, not a
+           utility widget. Swap the audio source in js/main.js
+           CONFIG.audioSrc. No autoplay — playback starts only on
+           user action.
       ============================================================ -->
-      <div class="cinema-player" data-animate>
+      <div class="release-card" data-animate style="transition-delay: 1.1s">
         <audio
           id="anthem-audio"
           preload="metadata"
@@ -79,16 +83,20 @@
           <source src="audio/razors-edge-anthem.mp3" type="audio/mpeg" data-config-src="audioSrc" />
         </audio>
 
-        <p class="cinema-player__cue">Press play.</p>
+        <div class="release-card__art">
+          <div class="release-card__art-bg" aria-hidden="true"></div>
+          <button class="release-card__play" id="play-toggle" type="button" aria-label="Play the anthem">
+            <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+        </div>
 
-        <button class="cinema-player__play" id="play-toggle" type="button" aria-label="Play the anthem">
-          <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-        </button>
+        <div class="release-card__meta">
+          <p class="release-card__title" data-config="songTitle">New Place, Same Edge</p>
+          <p class="release-card__subtitle"><span data-config="businessName">Razors Edge</span> — Original Anthem</p>
+        </div>
 
-        <p class="cinema-player__track" data-config="songTitle">New Place, Same Edge</p>
-
-        <div class="cinema-player__controls">
+        <div class="release-card__controls">
           <button class="player__restart" id="restart-btn" type="button" aria-label="Restart track">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
           </button>
@@ -134,6 +142,8 @@
         <p class="player__fallback" id="player-fallback" hidden>
           Audio file not found — add <code>audio/razors-edge-anthem.mp3</code> to enable playback.
         </p>
+
+        <p class="release-card__caption">The full song and clean masters are yours after purchase.</p>
       </div>
 
       <button class="hero__scrollcue" type="button" data-scroll-to="#story" aria-label="Scroll to see the story">
@@ -145,22 +155,19 @@
   <main>
 
     <!-- ============================================================
-         THE STORY — comes before the sale.
+         STORY PROOF — the evidence behind the song.
     ============================================================ -->
     <section class="section story-section" id="story" aria-labelledby="story-heading">
       <div class="wrap wrap--narrow">
-        <p class="section__eyebrow" data-animate>The story</p>
-        <h2 class="story-heading" id="story-heading" data-animate>We noticed&hellip;</h2>
+        <h2 class="story-heading" id="story-heading" data-animate>Inspired by Your Story</h2>
 
-        <ul class="story-list" data-animate>
-          <li>More than 30 years of combined experience.</li>
-          <li>A brand new chapter — a new home at <span data-config="cityState">Newark, Delaware</span>.</li>
-          <li>Faith and gratitude, worn openly.</li>
-          <li>Real teamwork, not just one chair.</li>
-          <li>Craftsmanship in every fade.</li>
+        <ul class="story-checklist" data-animate>
+          <li>Over 30 years of craftsmanship</li>
+          <li>A new chapter on Capital Trail</li>
+          <li>Your passion for serving people</li>
+          <li>Your willingness to openly praise God</li>
+          <li>The confidence you help create every day</li>
         </ul>
-
-        <p class="story-turn" data-animate>So we turned that story into music.</p>
       </div>
 
       <!-- Full-bleed shop photo. If images/shop-photo.jpg is missing, this simply hides. -->
@@ -171,18 +178,34 @@
           onerror="this.parentElement.style.display='none';"
         />
       </figure>
+    </section>
 
+    <!-- ============================================================
+         VALIDATION MOMENT — the reader agrees before the pitch.
+    ============================================================ -->
+    <section class="section section--alt" id="validate" aria-labelledby="validate-heading">
       <div class="wrap wrap--narrow">
-        <blockquote class="story__excerpt" data-animate>
-          &ldquo;New place, same edge, every line cut tight.&rdquo;
-        </blockquote>
-        <p class="story__note" data-animate>
-          The full lyrics and clean audio are delivered after purchase or package activation.
-        </p>
+        <h2 class="section__heading" id="validate-heading" data-animate>Did We Capture Your Story?</h2>
+        <div class="validate__choices" data-animate>
+          <button class="validate__choice" type="button" data-scroll-to="#pivot">
+            <span aria-hidden="true">&#128077;</span> Absolutely
+          </button>
+          <button class="validate__choice" type="button" data-scroll-to="#pivot">
+            <span aria-hidden="true">&#129300;</span> Almost
+          </button>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============================================================
+         PIVOT — the emotional bridge, and a chance to relisten.
+    ============================================================ -->
+    <section class="section" id="pivot" aria-label="Pivot">
+      <div class="wrap wrap--narrow">
+        <p class="pivot-line" data-animate>Imagine what we could build together.</p>
         <button class="play-again" type="button" data-play-again data-scroll-to="#main">
           <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          Play the song again
+          Hear it again
         </button>
       </div>
     </section>
@@ -197,40 +220,76 @@
 
         <div class="mockup-grid" data-animate>
           <div class="mockup">
-            <div class="mockup__phone">
-              <img
-                src="images/reel-transformation.jpg"
-                alt="Haircut transformation"
-                onerror="this.closest('.mockup__phone').classList.add('mockup__phone--empty');"
-              />
-              <span class="mockup__play" aria-hidden="true">&#9654;</span>
-              <span class="mockup__badge">Reel</span>
+            <div class="mockup__post">
+              <div class="mockup__post-head">
+                <span class="mockup__post-avatar" aria-hidden="true"></span>
+                <span class="mockup__post-name" data-config="businessName">Razors Edge</span>
+              </div>
+              <div class="mockup__post-media">
+                <img
+                  src="images/reel-transformation.jpg"
+                  alt="Haircut transformation"
+                  onerror="this.closest('.mockup__post-media').classList.add('mockup__post-media--empty');"
+                />
+                <span class="mockup__play" aria-hidden="true">&#9654;</span>
+                <span class="mockup__badge">Reel</span>
+              </div>
+              <div class="mockup__post-actions" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.3-8.1C1.02 10.9 1.6 7.6 4.4 6.2c2.3-1.15 4.6-.2 5.9 1.4.5.6 1.3.6 1.8 0 1.3-1.6 3.6-2.55 5.9-1.4 2.8 1.4 3.38 4.7 1.7 6.7C18.7 16.65 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.32-3.86-.9L3 21l1.9-5.64A8.46 8.46 0 0 1 3.5 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              </div>
+              <p class="mockup__post-caption"><strong data-config="businessName">Razors Edge</strong> — New place, same energy.</p>
             </div>
             <p class="mockup__caption">The fade, the color, the reveal — set to their anthem.</p>
           </div>
 
           <div class="mockup">
-            <div class="mockup__phone">
-              <img
-                src="images/reel-shop.jpg"
-                alt="Barber and client at Razors Edge"
-                onerror="this.closest('.mockup__phone').classList.add('mockup__phone--empty');"
-              />
-              <span class="mockup__play" aria-hidden="true">&#9654;</span>
-              <span class="mockup__badge">TikTok</span>
+            <div class="mockup__post">
+              <div class="mockup__post-head">
+                <span class="mockup__post-avatar" aria-hidden="true"></span>
+                <span class="mockup__post-name" data-config="businessName">Razors Edge</span>
+              </div>
+              <div class="mockup__post-media">
+                <img
+                  src="images/reel-shop.jpg"
+                  alt="Barber and client at Razors Edge"
+                  onerror="this.closest('.mockup__post-media').classList.add('mockup__post-media--empty');"
+                />
+                <span class="mockup__play" aria-hidden="true">&#9654;</span>
+                <span class="mockup__badge">TikTok</span>
+              </div>
+              <div class="mockup__post-actions" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.3-8.1C1.02 10.9 1.6 7.6 4.4 6.2c2.3-1.15 4.6-.2 5.9 1.4.5.6 1.3.6 1.8 0 1.3-1.6 3.6-2.55 5.9-1.4 2.8 1.4 3.38 4.7 1.7 6.7C18.7 16.65 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.32-3.86-.9L3 21l1.9-5.64A8.46 8.46 0 0 1 3.5 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              </div>
+              <p class="mockup__post-caption"><strong data-config="businessName">Razors Edge</strong> — Six seconds. Their sound.</p>
             </div>
             <p class="mockup__caption">Six seconds. Their sound. Their shop.</p>
           </div>
 
           <div class="mockup">
-            <div class="mockup__phone">
-              <img
-                src="images/shop-photo.jpg"
-                alt="Razors Edge shop"
-                onerror="this.closest('.mockup__phone').classList.add('mockup__phone--empty');"
-              />
-              <span class="mockup__play" aria-hidden="true">&#9654;</span>
-              <span class="mockup__badge">Facebook</span>
+            <div class="mockup__post">
+              <div class="mockup__post-head">
+                <span class="mockup__post-avatar" aria-hidden="true"></span>
+                <span class="mockup__post-name" data-config="businessName">Razors Edge</span>
+              </div>
+              <div class="mockup__post-media">
+                <img
+                  src="images/shop-photo.jpg"
+                  alt="Razors Edge shop"
+                  onerror="this.closest('.mockup__post-media').classList.add('mockup__post-media--empty');"
+                />
+                <span class="mockup__play" aria-hidden="true">&#9654;</span>
+                <span class="mockup__badge">Facebook</span>
+              </div>
+              <div class="mockup__post-actions" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 21s-6.7-4.35-9.3-8.1C1.02 10.9 1.6 7.6 4.4 6.2c2.3-1.15 4.6-.2 5.9 1.4.5.6 1.3.6 1.8 0 1.3-1.6 3.6-2.55 5.9-1.4 2.8 1.4 3.38 4.7 1.7 6.7C18.7 16.65 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.32-3.86-.9L3 21l1.9-5.64A8.46 8.46 0 0 1 3.5 11.5 8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              </div>
+              <p class="mockup__post-caption"><strong data-config="businessName">Razors Edge</strong> — New chapter, new sound.</p>
             </div>
             <p class="mockup__caption">New chapter, new sound, same edge.</p>
           </div>
@@ -239,18 +298,20 @@
     </section>
 
     <!-- ============================================================
-         TRUST + PIVOT — the bridge into the offer.
+         WHY WE MADE THIS — Built4Vision is introduced here, after
+         the song and the story, not before.
     ============================================================ -->
     <section class="section section--trust" id="trust" aria-labelledby="trust-heading">
       <div class="wrap wrap--narrow">
-        <h2 class="section__heading" id="trust-heading" data-animate>Created by <span data-config="builtByName">Built4Vision</span></h2>
+        <h2 class="section__heading" id="trust-heading" data-animate>Why Did We Make This?</h2>
         <p class="trust__body" data-animate>
-          Built4Vision helps local businesses look stronger online through modern websites, ongoing support,
-          and original branded content.
+          Because we believe every great local business has a story worth telling.
         </p>
-
-        <p class="pivot-line" data-animate>
-          If this is what we created without ever meeting you, imagine what we could build together.
+        <p class="pivot-line pivot-line--tight" data-animate>
+          This was our way of saying — we noticed yours.
+        </p>
+        <p class="trust__by" data-animate>
+          <span data-config="builtByName">Built4Vision</span>
         </p>
       </div>
     </section>
@@ -268,7 +329,7 @@
           <!-- OFFER 1 — PRIMARY -->
           <div class="offer offer--primary">
             <span class="offer__badge">Recommended</span>
-            <h3 class="offer__name">Built4Vision Website + Brand Package</h3>
+            <h3 class="offer__name">Brand Experience Package</h3>
             <p class="offer__price">
               <span class="offer__price-amount" data-config="packagePrice">$197</span>
               <span class="offer__price-term">/month</span>
@@ -360,7 +421,7 @@
           <div class="field">
             <label for="cf-offer">Selected offer</label>
             <select id="cf-offer" name="offer">
-              <option value="package">Built4Vision Website + Brand Package — $197/month</option>
+              <option value="package">Brand Experience Package — $197/month</option>
               <option value="song">Song Only — $49 one time</option>
             </select>
           </div>
