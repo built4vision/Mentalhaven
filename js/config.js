@@ -42,16 +42,15 @@ const CONFIG = {
   packagePrice: "$197",
   songPrice: "$49",
 
-  // EDIT: replace "#" with real checkout links once accounts are set up.
-  // Leaving a value as "#" renders it as a disabled "(add link)" placeholder.
+  // EDIT: replace "#" with a real checkout link, or add more providers as
+  // needed (e.g. paypal: "..."). Leaving a value as "#" renders it as a
+  // disabled "(add link)" placeholder.
   paymentLinks: {
     package: {
       stripe: "https://buy.stripe.com/eVq3cv5HR30jgWd6lQ4sE00",
-      paypal: "#",
     },
     song: {
       stripe: "https://buy.stripe.com/14AfZhdajeJ1cFXh0u4sE01",
-      paypal: "#",
     },
   },
 
