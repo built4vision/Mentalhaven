@@ -109,7 +109,6 @@ function initPlayer() {
   const timeElapsed = document.getElementById("time-elapsed");
   const timeTotal = document.getElementById("time-total");
   const fallback = document.getElementById("player-fallback");
-  const ctaPlay = document.getElementById("cta-play-anthem");
   const waveBase = document.getElementById("wave-base");
   const waveProgress = document.getElementById("wave-progress");
 
@@ -182,8 +181,8 @@ function initPlayer() {
     }
   });
 
-  ctaPlay.addEventListener("click", () => {
-    play();
+  document.querySelectorAll("[data-play-again]").forEach((btn) => {
+    btn.addEventListener("click", () => play());
   });
 
   restartBtn.addEventListener("click", () => {
@@ -219,7 +218,9 @@ function initPlayer() {
   audio.addEventListener("error", () => {
     fallback.hidden = false;
     playToggle.disabled = true;
-    ctaPlay.disabled = true;
+    document.querySelectorAll("[data-play-again]").forEach((btn) => {
+      btn.disabled = true;
+    });
   });
 
   seek.addEventListener("input", () => {
@@ -320,6 +321,22 @@ function initAnimations() {
 }
 
 /* ==========================================================================
+   SCROLL CUES
+   ========================================================================== */
+function initScrollCues() {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll("[data-scroll-to]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const target = document.querySelector(el.dataset.scrollTo);
+      if (target) {
+        target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+      }
+    });
+  });
+}
+
+/* ==========================================================================
    INIT
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
@@ -328,4 +345,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initPlayer();
   initContactPanel();
   initAnimations();
+  initScrollCues();
 });

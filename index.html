@@ -9,14 +9,14 @@
        Keep these in sync with the CONFIG object in js/main.js —
        social crawlers read this static markup, not JS output.
   ============================================================ -->
-  <title>New Place, Same Edge — A Custom Anthem for Razors Edge | Built4Vision</title>
-  <meta name="description" content="A custom brand anthem created for Razors Edge barbershop in Newark, Delaware — built for Reels, team content, and the new-location chapter. Presented by Built4Vision." />
+  <title>For Razors Edge — A Custom Anthem by Built4Vision</title>
+  <meta name="description" content="A custom brand anthem created for Razors Edge barbershop in Newark, Delaware — a creative gift, not an advertisement. Presented by Built4Vision." />
   <!-- EDIT: replace with the live URL once this page is deployed -->
   <link rel="canonical" href="https://built4vision.net/razors-edge" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="New Place, Same Edge — A Custom Anthem for Razors Edge" />
+  <meta property="og:title" content="For Razors Edge — A Custom Anthem by Built4Vision" />
   <meta property="og:description" content="A custom brand anthem created for Razors Edge barbershop in Newark, Delaware. Presented by Built4Vision." />
   <!-- EDIT: add a 1200x630 social preview image at images/social-preview.jpg -->
   <meta property="og:image" content="images/social-preview.jpg" />
@@ -33,40 +33,44 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ============================================================
-       HEADER / HERO
-       Business name + audio player must be visible without
-       scrolling on a standard mobile screen.
+       HERO
+       No pricing, no buy buttons — the wordmark and the play
+       button must be visible without scrolling on mobile.
   ============================================================ -->
   <header class="hero" id="main">
     <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__scrim" aria-hidden="true"></div>
 
     <div class="wrap hero__inner">
-      <div class="brand" data-animate>
+      <p class="wordmark" data-animate>
         <!-- Logo placeholder: drop images/logo.svg here and this swaps in automatically -->
         <img
-          class="brand__logo-img"
+          class="wordmark__logo-img"
           src="images/logo.svg"
           alt="Razors Edge logo"
           data-config-src="logoImage"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';"
         />
-        <span class="brand__logo-text" style="display:none;" data-config="businessName">Razors Edge</span>
-      </div>
-
-      <p class="eyebrow" data-animate>A custom brand concept created by <span data-config="builtByName">Built4Vision</span></p>
-
-      <h1 class="hero__headline" data-animate>New Place. Same Edge. A New Sound for Razors Edge.</h1>
-
-      <p class="hero__sub" data-animate>
-        A custom anthem designed for haircut transformations, team content, Reels, and the new-location chapter.
+        <span class="wordmark__text" style="display:none;" data-config="businessName">Razors Edge</span>
       </p>
+
+      <h1 class="hero__headline" data-animate>For <span data-config="businessName">Razors Edge</span>.</h1>
+      <p class="hero__by" data-animate>A custom creative concept by <span data-config="builtByName">Built4Vision</span>.</p>
+
+      <div class="hero__intro" data-animate>
+        <p class="hero__intro-lead">This isn't an advertisement.</p>
+        <p class="hero__intro-body">
+          We came across <span data-config="businessName">Razors Edge</span>, saw the passion behind the
+          business, and decided to create something.
+        </p>
+      </div>
 
       <!-- ============================================================
            CUSTOM AUDIO PLAYER
            Swap the audio source in js/main.js CONFIG.audioSrc.
            No autoplay — playback starts only on user action.
       ============================================================ -->
-      <div class="player" data-animate>
+      <div class="cinema-player" data-animate>
         <audio
           id="anthem-audio"
           preload="metadata"
@@ -75,40 +79,37 @@
           <source src="audio/razors-edge-anthem.mp3" type="audio/mpeg" data-config-src="audioSrc" />
         </audio>
 
-        <div class="player__row">
-          <button class="player__play" id="play-toggle" type="button" aria-label="Play the anthem">
-            <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-            <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-          </button>
+        <p class="cinema-player__cue">Press play.</p>
 
-          <div class="player__meta">
-            <p class="player__track" data-config="songTitle">New Place, Same Edge</p>
-            <p class="player__label">Official Brand Anthem — Razors Edge</p>
-          </div>
+        <button class="cinema-player__play" id="play-toggle" type="button" aria-label="Play the anthem">
+          <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
 
+        <p class="cinema-player__track" data-config="songTitle">New Place, Same Edge</p>
+
+        <div class="cinema-player__controls">
           <button class="player__restart" id="restart-btn" type="button" aria-label="Restart track">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
           </button>
-        </div>
 
-        <div class="player__scrub">
-          <div class="waveform" id="waveform" aria-hidden="true">
-            <div class="waveform__layer waveform__layer--base" id="wave-base"></div>
-            <div class="waveform__layer waveform__layer--progress" id="wave-progress"></div>
+          <div class="player__scrub">
+            <div class="waveform" id="waveform" aria-hidden="true">
+              <div class="waveform__layer waveform__layer--base" id="wave-base"></div>
+              <div class="waveform__layer waveform__layer--progress" id="wave-progress"></div>
+            </div>
+            <input
+              type="range"
+              id="seek"
+              class="seek"
+              min="0"
+              max="1000"
+              value="0"
+              step="1"
+              aria-label="Seek position in track"
+            />
           </div>
-          <input
-            type="range"
-            id="seek"
-            class="seek"
-            min="0"
-            max="1000"
-            value="0"
-            step="1"
-            aria-label="Seek position in track"
-          />
-        </div>
 
-        <div class="player__row player__row--bottom">
           <div class="player__time" aria-live="off">
             <span id="time-elapsed">0:00</span>
             <span class="player__time-sep">/</span>
@@ -135,151 +136,132 @@
         </p>
       </div>
 
-      <div class="hero__ctas" data-animate>
-        <button class="btn btn--primary" id="cta-play-anthem" type="button">Play the Anthem</button>
-        <a class="btn btn--ghost" href="#story">See the Story Behind It</a>
-      </div>
+      <button class="hero__scrollcue" type="button" data-scroll-to="#story" aria-label="Scroll to see the story">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16.5 4.5 9l1.4-1.4L12 13.7l6.1-6.1L19.5 9z"/></svg>
+      </button>
     </div>
   </header>
 
   <main>
 
     <!-- ============================================================
-         SOCIAL VALUE SECTION
+         THE STORY — comes before the sale.
     ============================================================ -->
-    <section class="section" id="content" aria-labelledby="content-heading">
-      <div class="wrap">
-        <p class="section__eyebrow" data-animate>Made for the feed</p>
-        <h2 class="section__heading" id="content-heading" data-animate>Built to Become Content</h2>
-
-        <div class="card-grid" data-animate>
-          <div class="card">
-            <span class="card__tag">0:06</span>
-            <h3>Brand Sting</h3>
-            <p>A sharp 6-second stinger for intros and outros.</p>
-          </div>
-          <div class="card">
-            <span class="card__tag">0:15</span>
-            <h3>Haircut Reel Hook</h3>
-            <p>A 15-second hook built for fade and transformation Reels.</p>
-          </div>
-          <div class="card">
-            <span class="card__tag">0:30</span>
-            <h3>New-Location Promo</h3>
-            <p>A 30-second edit to announce the new chapter at Capital Trail.</p>
-          </div>
-          <div class="card">
-            <span class="card__tag">Full</span>
-            <h3>Full Anthem</h3>
-            <p>The complete track for team videos and brand storytelling.</p>
-          </div>
-        </div>
-
-        <h3 class="section__subheading" data-animate>Content it's built for</h3>
-        <ul class="chip-row" data-animate>
-          <li class="chip">Before-and-after transformations</li>
-          <li class="chip">Barber spotlight videos</li>
-          <li class="chip">Faith-centered posts</li>
-          <li class="chip">Customer reaction clips</li>
-          <li class="chip">Shop walkthroughs</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         PERSONALIZATION SECTION
-    ============================================================ -->
-    <section class="section section--alt" aria-labelledby="why-heading">
-      <div class="wrap">
-        <p class="section__eyebrow" data-animate>The details that made it</p>
-        <h2 class="section__heading" id="why-heading" data-animate>Why This Sounds Like Razors Edge</h2>
-
-        <div class="feature-grid" data-animate>
-          <div class="feature">
-            <span class="feature__mark" aria-hidden="true"></span>
-            <p>"New place, same edge" — the new-location story, in one line.</p>
-          </div>
-          <div class="feature">
-            <span class="feature__mark" aria-hidden="true"></span>
-            <p>Rooted in <strong data-config="businessName">Razors Edge</strong>'s home — <span data-config="cityState">Newark, Delaware</span>.</p>
-          </div>
-          <div class="feature">
-            <span class="feature__mark" aria-hidden="true"></span>
-            <p>Written for the new address: <span data-config="address">1450 Capital Trail, Newark, Delaware 19711</span>.</p>
-          </div>
-          <div class="feature">
-            <span class="feature__mark" aria-hidden="true"></span>
-            <p>Carries more than 30 combined years of barbering experience.</p>
-          </div>
-          <div class="feature">
-            <span class="feature__mark" aria-hidden="true"></span>
-            <p>Built around craftsmanship across the whole team, not one chair.</p>
-          </div>
-          <div class="feature">
-            <span class="feature__mark" aria-hidden="true"></span>
-            <p>Reflects the confidence created by the customer experience.</p>
-          </div>
-          <div class="feature">
-            <span class="feature__mark" aria-hidden="true"></span>
-            <p>Honors the owner's visible faith and gratitude.</p>
-          </div>
-        </div>
-
-        <!-- Image placeholder: drop a shop or team photo at images/shop-photo.jpg -->
-        <figure class="photo-placeholder" data-animate>
-          <img
-            src="images/shop-photo.jpg"
-            alt="Razors Edge shop photo"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          />
-          <div class="photo-placeholder__empty" style="display:none;">
-            <span class="photo-placeholder__icon" aria-hidden="true"></span>
-            <p>Add a shop or team photo<br /><code>images/shop-photo.jpg</code></p>
-          </div>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         STORY PREVIEW SECTION (protected — no full lyrics)
-    ============================================================ -->
-    <section class="section" id="story" aria-labelledby="story-heading">
+    <section class="section story-section" id="story" aria-labelledby="story-heading">
       <div class="wrap wrap--narrow">
-        <p class="section__eyebrow" data-animate>The song</p>
-        <h2 class="section__heading" id="story-heading" data-animate>Built Around the Razors Edge Story</h2>
-        <p class="story__title" data-animate>"<span data-config="songTitle">New Place, Same Edge</span>"</p>
+        <p class="section__eyebrow" data-animate>The story</p>
+        <h2 class="story-heading" id="story-heading" data-animate>We noticed&hellip;</h2>
 
-        <ul class="chip-row chip-row--center" data-animate>
-          <li class="chip chip--accent">New Location</li>
-          <li class="chip chip--accent">Newark Identity</li>
-          <li class="chip chip--accent">Team Craftsmanship</li>
-          <li class="chip chip--accent">30+ Years Experience</li>
-          <li class="chip chip--accent">Faith &amp; Gratitude</li>
+        <ul class="story-list" data-animate>
+          <li>More than 30 years of combined experience.</li>
+          <li>A brand new chapter — a new home at <span data-config="cityState">Newark, Delaware</span>.</li>
+          <li>Faith and gratitude, worn openly.</li>
+          <li>Real teamwork, not just one chair.</li>
+          <li>Craftsmanship in every fade.</li>
         </ul>
 
-        <p class="story__body" data-animate>
-          This anthem was written around the Razors Edge story—including the new location, Newark identity,
-          team craftsmanship, more than 30 combined years of experience, customer confidence, and the owner's
-          visible faith and gratitude.
-        </p>
+        <p class="story-turn" data-animate>So we turned that story into music.</p>
+      </div>
 
+      <!-- Full-bleed shop photo. If images/shop-photo.jpg is missing, this simply hides. -->
+      <figure class="story-photo" data-animate>
+        <img
+          src="images/shop-photo.jpg"
+          alt="Inside Razors Edge"
+          onerror="this.parentElement.style.display='none';"
+        />
+      </figure>
+
+      <div class="wrap wrap--narrow">
         <blockquote class="story__excerpt" data-animate>
-          "New place, same edge, every line cut tight."
+          &ldquo;New place, same edge, every line cut tight.&rdquo;
         </blockquote>
-
         <p class="story__note" data-animate>
           The full lyrics and clean audio are delivered after purchase or package activation.
         </p>
+
+        <button class="play-again" type="button" data-play-again data-scroll-to="#main">
+          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Play the song again
+        </button>
       </div>
     </section>
 
     <!-- ============================================================
-         CONVERSION SECTION
+         VISION — show it, don't explain it.
+    ============================================================ -->
+    <section class="section section--alt" id="vision" aria-labelledby="vision-heading">
+      <div class="wrap">
+        <p class="section__eyebrow" data-animate>How this could look</p>
+        <h2 class="section__heading" id="vision-heading" data-animate>Imagine It In Their Feed</h2>
+
+        <div class="mockup-grid" data-animate>
+          <div class="mockup">
+            <div class="mockup__phone">
+              <img
+                src="images/reel-transformation.jpg"
+                alt="Haircut transformation"
+                onerror="this.closest('.mockup__phone').classList.add('mockup__phone--empty');"
+              />
+              <span class="mockup__play" aria-hidden="true">&#9654;</span>
+              <span class="mockup__badge">Reel</span>
+            </div>
+            <p class="mockup__caption">The fade, the color, the reveal — set to their anthem.</p>
+          </div>
+
+          <div class="mockup">
+            <div class="mockup__phone">
+              <img
+                src="images/reel-shop.jpg"
+                alt="Barber and client at Razors Edge"
+                onerror="this.closest('.mockup__phone').classList.add('mockup__phone--empty');"
+              />
+              <span class="mockup__play" aria-hidden="true">&#9654;</span>
+              <span class="mockup__badge">TikTok</span>
+            </div>
+            <p class="mockup__caption">Six seconds. Their sound. Their shop.</p>
+          </div>
+
+          <div class="mockup">
+            <div class="mockup__phone">
+              <img
+                src="images/shop-photo.jpg"
+                alt="Razors Edge shop"
+                onerror="this.closest('.mockup__phone').classList.add('mockup__phone--empty');"
+              />
+              <span class="mockup__play" aria-hidden="true">&#9654;</span>
+              <span class="mockup__badge">Facebook</span>
+            </div>
+            <p class="mockup__caption">New chapter, new sound, same edge.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TRUST + PIVOT — the bridge into the offer.
+    ============================================================ -->
+    <section class="section section--trust" id="trust" aria-labelledby="trust-heading">
+      <div class="wrap wrap--narrow">
+        <h2 class="section__heading" id="trust-heading" data-animate>Created by <span data-config="builtByName">Built4Vision</span></h2>
+        <p class="trust__body" data-animate>
+          Built4Vision helps local businesses look stronger online through modern websites, ongoing support,
+          and original branded content.
+        </p>
+
+        <p class="pivot-line" data-animate>
+          If this is what we created without ever meeting you, imagine what we could build together.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         THE OFFER — arrives last, softly.
     ============================================================ -->
     <section class="section section--alt" id="offers" aria-labelledby="offers-heading">
       <div class="wrap">
-        <p class="section__eyebrow" data-animate>Ready when you are</p>
-        <h2 class="section__heading" id="offers-heading" data-animate>Choose How You Want to Use It</h2>
+        <p class="section__eyebrow" data-animate>If you'd like to keep going</p>
+        <h2 class="section__heading" id="offers-heading" data-animate>If You'd Like Us to Create Like This Every Month</h2>
 
         <div class="offers" data-animate>
 
@@ -332,19 +314,6 @@
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         TRUST / POSITIONING
-    ============================================================ -->
-    <section class="section section--trust" aria-labelledby="trust-heading">
-      <div class="wrap wrap--narrow">
-        <h2 class="section__heading" id="trust-heading" data-animate>Created by <span data-config="builtByName">Built4Vision</span></h2>
-        <p class="trust__body" data-animate>
-          Built4Vision helps local businesses look stronger online through modern websites, ongoing support,
-          and original branded content.
-        </p>
       </div>
     </section>
 
