@@ -15,8 +15,8 @@ const CONFIG = {
   address: "1450 Capital Trail, Newark, Delaware 19711",
 
   builtByName: "Built4Vision",
-  builtByUrl: "https://built4vision.net",
-  builtByUrlText: "built4vision.net",
+  builtByUrl: "https://built4vision.com",
+  builtByUrlText: "built4vision.com",
 
   // EDIT: replace with the real inbox this business should reach.
   contactEmail: "info@built4vision.com",
