@@ -160,8 +160,11 @@ function initPlayer() {
   }
 
   function setPlayingUI(isPlaying) {
-    iconPlay.hidden = isPlaying;
-    iconPause.hidden = !isPlaying;
+    // Toggle via inline style rather than the `hidden` attribute/property —
+    // inline style always wins the cascade, regardless of any stylesheet
+    // or UA quirk that might otherwise leave both icons visible.
+    iconPlay.style.display = isPlaying ? "none" : "block";
+    iconPause.style.display = isPlaying ? "block" : "none";
     playToggle.setAttribute("aria-label", isPlaying ? "Pause the anthem" : "Play the anthem");
   }
 
@@ -172,6 +175,7 @@ function initPlayer() {
   }
 
   buildWaveform();
+  setPlayingUI(false);
 
   playToggle.addEventListener("click", () => {
     if (audio.paused) {

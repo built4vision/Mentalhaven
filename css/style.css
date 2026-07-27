@@ -39,6 +39,8 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -60,6 +62,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img {
@@ -560,7 +563,10 @@ img {
 }
 
 .story-photo {
-  margin: 3.5rem -1.25rem;
+  /* Direct child of the unpadded .section, so 100% width already reaches
+     the true edges — no negative margin needed (and none should be added,
+     since that would overflow the viewport and cause horizontal scroll). */
+  margin: 3.5rem 0;
   max-height: 460px;
   overflow: hidden;
 }
