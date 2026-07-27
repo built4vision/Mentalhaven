@@ -1119,3 +1119,111 @@ textarea {
 .icon[hidden] {
   display: none;
 }
+
+/* ==========================================================================
+   THANK-YOU PAGE — post-purchase deliverables
+   ========================================================================== */
+.thanks-hero {
+  padding: 4rem 0 2.5rem;
+  text-align: center;
+}
+.thanks-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+.thanks-hero__badge .icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--accent);
+}
+.thanks-hero__headline {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
+  color: var(--cream);
+  margin: 0 0 0.75rem;
+  text-wrap: balance;
+}
+.thanks-hero__sub {
+  font-size: 1rem;
+  color: var(--cream-muted);
+  max-width: 46ch;
+  margin: 0 auto;
+}
+
+.deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: var(--wrap-narrow);
+  margin: 0 auto;
+}
+
+.deliverable {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.deliverable__text {
+  flex: 1;
+  min-width: 220px;
+}
+.deliverable__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--cream);
+  margin: 0 0 0.3rem;
+}
+.deliverable__desc {
+  font-size: 0.88rem;
+  color: var(--cream-muted);
+  margin: 0;
+}
+.deliverable__action {
+  flex: none;
+}
+.deliverable__pending {
+  font-size: 0.8rem;
+  color: var(--cream-muted);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  opacity: 0.75;
+}
+
+.rights-note {
+  max-width: var(--wrap-narrow);
+  margin: 2.5rem auto 0;
+  padding: 1.5rem;
+  border-left: 2px solid var(--accent);
+  background: var(--bg-panel);
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+  line-height: 1.6;
+}
+.rights-note strong {
+  color: var(--cream);
+}
+
+.thanks-support {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: var(--cream-muted);
+}
+.thanks-support a {
+  color: var(--accent);
+}

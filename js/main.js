@@ -1,76 +1,9 @@
 /* ==========================================================================
    RAZORS EDGE × BUILT4VISION — "New Place, Same Edge"
-   Single source of truth for editable values. Update this object only —
-   the rest of the script reads from it and populates the page.
+   Sales-page-specific behavior. CONFIG and applyConfig() live in
+   js/config.js (loaded before this file) since they're shared with
+   thank-you/index.html.
    ========================================================================== */
-const CONFIG = {
-  businessName: "Razors Edge",
-  songTitle: "New Place, Same Edge",
-
-  // Swap the file at this path (or change the path) to update the anthem.
-  audioSrc: "audio/razors-edge-anthem.mp3",
-
-  cityState: "Newark, Delaware",
-  address: "1450 Capital Trail, Newark, Delaware 19711",
-
-  builtByName: "Built4Vision",
-  builtByUrl: "https://built4vision.net",
-  builtByUrlText: "built4vision.net",
-
-  // EDIT: replace with the real inbox this business should reach.
-  contactEmail: "hello@built4vision.net",
-  contactEmailHref: "mailto:hello@built4vision.net",
-
-  packagePrice: "$197",
-  songPrice: "$49",
-
-  // EDIT: replace "#" with real checkout links once accounts are set up.
-  // Leaving a value as "#" renders it as a disabled "(add link)" placeholder.
-  paymentLinks: {
-    package: {
-      stripe: "#",
-      paypal: "#",
-    },
-    song: {
-      stripe: "#",
-      paypal: "#",
-    },
-  },
-
-  // EDIT: 1200x630 image used for social share previews (also set in <head> meta tags).
-  socialPreviewImage: "images/social-preview.jpg",
-
-  // EDIT: swap in the real logo once supplied (falls back to text wordmark if missing).
-  logoImage: "images/logo.svg",
-};
-
-/* ==========================================================================
-   POPULATE CONFIG-DRIVEN TEXT / LINKS
-   ========================================================================== */
-function applyConfig() {
-  document.querySelectorAll("[data-config]").forEach((el) => {
-    const key = el.dataset.config;
-    if (Object.prototype.hasOwnProperty.call(CONFIG, key) && typeof CONFIG[key] === "string") {
-      el.textContent = CONFIG[key];
-    }
-  });
-
-  document.querySelectorAll("[data-config-href]").forEach((el) => {
-    const key = el.dataset.configHref;
-    if (Object.prototype.hasOwnProperty.call(CONFIG, key)) {
-      el.setAttribute("href", CONFIG[key]);
-    }
-  });
-
-  document.querySelectorAll("[data-config-src]").forEach((el) => {
-    const key = el.dataset.configSrc;
-    if (Object.prototype.hasOwnProperty.call(CONFIG, key)) {
-      el.setAttribute("src", CONFIG[key]);
-    }
-  });
-
-  document.title = document.title.replace(/Razors Edge/g, CONFIG.businessName);
-}
 
 /* ==========================================================================
    PAYMENT LINK PLACEHOLDERS
@@ -295,33 +228,6 @@ function initContactPanel() {
     form.hidden = true;
     success.hidden = false;
   });
-}
-
-/* ==========================================================================
-   ENTRANCE ANIMATIONS
-   ========================================================================== */
-function initAnimations() {
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const targets = document.querySelectorAll("[data-animate]");
-
-  if (prefersReduced || !("IntersectionObserver" in window)) {
-    targets.forEach((el) => el.classList.add("in-view"));
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-  );
-
-  targets.forEach((el) => observer.observe(el));
 }
 
 /* ==========================================================================
