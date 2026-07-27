@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- ============================================================
+       SEO / SOCIAL META
+       Keep these in sync with the CONFIG object in js/main.js —
+       social crawlers read this static markup, not JS output.
+  ============================================================ -->
+  <title>New Place, Same Edge — A Custom Anthem for Razors Edge | Built4Vision</title>
+  <meta name="description" content="A custom brand anthem created for Razors Edge barbershop in Newark, Delaware — built for Reels, team content, and the new-location chapter. Presented by Built4Vision." />
+  <!-- EDIT: replace with the live URL once this page is deployed -->
+  <link rel="canonical" href="https://built4vision.net/razors-edge" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="New Place, Same Edge — A Custom Anthem for Razors Edge" />
+  <meta property="og:description" content="A custom brand anthem created for Razors Edge barbershop in Newark, Delaware. Presented by Built4Vision." />
+  <!-- EDIT: add a 1200x630 social preview image at images/social-preview.jpg -->
+  <meta property="og:image" content="images/social-preview.jpg" />
+  <meta property="og:url" content="https://built4vision.net/razors-edge" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon placeholder — swap for the Razors Edge mark when supplied -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       HEADER / HERO
+       Business name + audio player must be visible without
+       scrolling on a standard mobile screen.
+  ============================================================ -->
+  <header class="hero" id="main">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="wrap hero__inner">
+      <div class="brand" data-animate>
+        <!-- Logo placeholder: drop images/logo.svg here and this swaps in automatically -->
+        <img
+          class="brand__logo-img"
+          src="images/logo.svg"
+          alt="Razors Edge logo"
+          data-config-src="logoImage"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"
+        />
+        <span class="brand__logo-text" style="display:none;" data-config="businessName">Razors Edge</span>
+      </div>
+
+      <p class="eyebrow" data-animate>A custom brand concept created by <span data-config="builtByName">Built4Vision</span></p>
+
+      <h1 class="hero__headline" data-animate>New Place. Same Edge. A New Sound for Razors Edge.</h1>
+
+      <p class="hero__sub" data-animate>
+        A custom anthem designed for haircut transformations, team content, Reels, and the new-location chapter.
+      </p>
+
+      <!-- ============================================================
+           CUSTOM AUDIO PLAYER
+           Swap the audio source in js/main.js CONFIG.audioSrc.
+           No autoplay — playback starts only on user action.
+      ============================================================ -->
+      <div class="player" data-animate>
+        <audio
+          id="anthem-audio"
+          preload="metadata"
+          data-config-src="audioSrc"
+        >
+          <source src="audio/razors-edge-anthem.mp3" type="audio/mpeg" data-config-src="audioSrc" />
+        </audio>
+
+        <div class="player__row">
+          <button class="player__play" id="play-toggle" type="button" aria-label="Play the anthem">
+            <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+
+          <div class="player__meta">
+            <p class="player__track" data-config="songTitle">New Place, Same Edge</p>
+            <p class="player__label">Official Brand Anthem — Razors Edge</p>
+          </div>
+
+          <button class="player__restart" id="restart-btn" type="button" aria-label="Restart track">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+          </button>
+        </div>
+
+        <div class="player__scrub">
+          <div class="waveform" id="waveform" aria-hidden="true">
+            <div class="waveform__layer waveform__layer--base" id="wave-base"></div>
+            <div class="waveform__layer waveform__layer--progress" id="wave-progress"></div>
+          </div>
+          <input
+            type="range"
+            id="seek"
+            class="seek"
+            min="0"
+            max="1000"
+            value="0"
+            step="1"
+            aria-label="Seek position in track"
+          />
+        </div>
+
+        <div class="player__row player__row--bottom">
+          <div class="player__time" aria-live="off">
+            <span id="time-elapsed">0:00</span>
+            <span class="player__time-sep">/</span>
+            <span id="time-total">0:00</span>
+          </div>
+
+          <div class="player__volume">
+            <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4h4l5 5V5L7 10H3z"/></svg>
+            <input
+              type="range"
+              id="volume"
+              class="volume"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.85"
+              aria-label="Volume"
+            />
+          </div>
+        </div>
+
+        <p class="player__fallback" id="player-fallback" hidden>
+          Audio file not found — add <code>audio/razors-edge-anthem.mp3</code> to enable playback.
+        </p>
+      </div>
+
+      <div class="hero__ctas" data-animate>
+        <button class="btn btn--primary" id="cta-play-anthem" type="button">Play the Anthem</button>
+        <a class="btn btn--ghost" href="#story">See the Story Behind It</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         SOCIAL VALUE SECTION
+    ============================================================ -->
+    <section class="section" id="content" aria-labelledby="content-heading">
+      <div class="wrap">
+        <p class="section__eyebrow" data-animate>Made for the feed</p>
+        <h2 class="section__heading" id="content-heading" data-animate>Built to Become Content</h2>
+
+        <div class="card-grid" data-animate>
+          <div class="card">
+            <span class="card__tag">0:06</span>
+            <h3>Brand Sting</h3>
+            <p>A sharp 6-second stinger for intros and outros.</p>
+          </div>
+          <div class="card">
+            <span class="card__tag">0:15</span>
+            <h3>Haircut Reel Hook</h3>
+            <p>A 15-second hook built for fade and transformation Reels.</p>
+          </div>
+          <div class="card">
+            <span class="card__tag">0:30</span>
+            <h3>New-Location Promo</h3>
+            <p>A 30-second edit to announce the new chapter at Capital Trail.</p>
+          </div>
+          <div class="card">
+            <span class="card__tag">Full</span>
+            <h3>Full Anthem</h3>
+            <p>The complete track for team videos and brand storytelling.</p>
+          </div>
+        </div>
+
+        <h3 class="section__subheading" data-animate>Content it's built for</h3>
+        <ul class="chip-row" data-animate>
+          <li class="chip">Before-and-after transformations</li>
+          <li class="chip">Barber spotlight videos</li>
+          <li class="chip">Faith-centered posts</li>
+          <li class="chip">Customer reaction clips</li>
+          <li class="chip">Shop walkthroughs</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PERSONALIZATION SECTION
+    ============================================================ -->
+    <section class="section section--alt" aria-labelledby="why-heading">
+      <div class="wrap">
+        <p class="section__eyebrow" data-animate>The details that made it</p>
+        <h2 class="section__heading" id="why-heading" data-animate>Why This Sounds Like Razors Edge</h2>
+
+        <div class="feature-grid" data-animate>
+          <div class="feature">
+            <span class="feature__mark" aria-hidden="true"></span>
+            <p>"New place, same edge" — the new-location story, in one line.</p>
+          </div>
+          <div class="feature">
+            <span class="feature__mark" aria-hidden="true"></span>
+            <p>Rooted in <strong data-config="businessName">Razors Edge</strong>'s home — <span data-config="cityState">Newark, Delaware</span>.</p>
+          </div>
+          <div class="feature">
+            <span class="feature__mark" aria-hidden="true"></span>
+            <p>Written for the new address: <span data-config="address">1450 Capital Trail, Newark, Delaware 19711</span>.</p>
+          </div>
+          <div class="feature">
+            <span class="feature__mark" aria-hidden="true"></span>
+            <p>Carries more than 30 combined years of barbering experience.</p>
+          </div>
+          <div class="feature">
+            <span class="feature__mark" aria-hidden="true"></span>
+            <p>Built around craftsmanship across the whole team, not one chair.</p>
+          </div>
+          <div class="feature">
+            <span class="feature__mark" aria-hidden="true"></span>
+            <p>Reflects the confidence created by the customer experience.</p>
+          </div>
+          <div class="feature">
+            <span class="feature__mark" aria-hidden="true"></span>
+            <p>Honors the owner's visible faith and gratitude.</p>
+          </div>
+        </div>
+
+        <!-- Image placeholder: drop a shop or team photo at images/shop-photo.jpg -->
+        <figure class="photo-placeholder" data-animate>
+          <img
+            src="images/shop-photo.jpg"
+            alt="Razors Edge shop photo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="photo-placeholder__empty" style="display:none;">
+            <span class="photo-placeholder__icon" aria-hidden="true"></span>
+            <p>Add a shop or team photo<br /><code>images/shop-photo.jpg</code></p>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STORY PREVIEW SECTION (protected — no full lyrics)
+    ============================================================ -->
+    <section class="section" id="story" aria-labelledby="story-heading">
+      <div class="wrap wrap--narrow">
+        <p class="section__eyebrow" data-animate>The song</p>
+        <h2 class="section__heading" id="story-heading" data-animate>Built Around the Razors Edge Story</h2>
+        <p class="story__title" data-animate>"<span data-config="songTitle">New Place, Same Edge</span>"</p>
+
+        <ul class="chip-row chip-row--center" data-animate>
+          <li class="chip chip--accent">New Location</li>
+          <li class="chip chip--accent">Newark Identity</li>
+          <li class="chip chip--accent">Team Craftsmanship</li>
+          <li class="chip chip--accent">30+ Years Experience</li>
+          <li class="chip chip--accent">Faith &amp; Gratitude</li>
+        </ul>
+
+        <p class="story__body" data-animate>
+          This anthem was written around the Razors Edge story—including the new location, Newark identity,
+          team craftsmanship, more than 30 combined years of experience, customer confidence, and the owner's
+          visible faith and gratitude.
+        </p>
+
+        <blockquote class="story__excerpt" data-animate>
+          "New place, same edge, every line cut tight."
+        </blockquote>
+
+        <p class="story__note" data-animate>
+          The full lyrics and clean audio are delivered after purchase or package activation.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONVERSION SECTION
+    ============================================================ -->
+    <section class="section section--alt" id="offers" aria-labelledby="offers-heading">
+      <div class="wrap">
+        <p class="section__eyebrow" data-animate>Ready when you are</p>
+        <h2 class="section__heading" id="offers-heading" data-animate>Choose How You Want to Use It</h2>
+
+        <div class="offers" data-animate>
+
+          <!-- OFFER 1 — PRIMARY -->
+          <div class="offer offer--primary">
+            <span class="offer__badge">Recommended</span>
+            <h3 class="offer__name">Built4Vision Website + Brand Package</h3>
+            <p class="offer__price">
+              <span class="offer__price-amount" data-config="packagePrice">$197</span>
+              <span class="offer__price-term">/month</span>
+            </p>
+            <ul class="offer__list">
+              <li>Modern custom website</li>
+              <li>Hosting</li>
+              <li>Ongoing site updates</li>
+              <li>Custom business anthem</li>
+              <li>Clean full-song version</li>
+              <li>6-, 15-, and 30-second social edits</li>
+              <li>Personalized promotional landing page</li>
+              <li>Ongoing creative support</li>
+            </ul>
+            <button class="btn btn--primary btn--block" type="button" data-offer="package">
+              Build the Full Razors Edge Experience
+            </button>
+            <p class="offer__note">The anthem is included with the complete package.</p>
+
+            <!-- Payment placeholders — non-functional until real links are added in js/main.js CONFIG -->
+            <div class="offer__pay" data-pay="package"></div>
+          </div>
+
+          <!-- OFFER 2 — SECONDARY -->
+          <div class="offer">
+            <h3 class="offer__name">Song Only</h3>
+            <p class="offer__price">
+              <span class="offer__price-amount" data-config="songPrice">$49</span>
+              <span class="offer__price-term">one time</span>
+            </p>
+            <ul class="offer__list">
+              <li>Full clean track</li>
+              <li>Business-use rights</li>
+              <li>15-second social edit</li>
+              <li>30-second promotional edit</li>
+            </ul>
+            <button class="btn btn--ghost btn--block" type="button" data-offer="song">
+              Get the Song Only
+            </button>
+
+            <!-- Payment placeholders — non-functional until real links are added in js/main.js CONFIG -->
+            <div class="offer__pay" data-pay="song"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TRUST / POSITIONING
+    ============================================================ -->
+    <section class="section section--trust" aria-labelledby="trust-heading">
+      <div class="wrap wrap--narrow">
+        <h2 class="section__heading" id="trust-heading" data-animate>Created by <span data-config="builtByName">Built4Vision</span></h2>
+        <p class="trust__body" data-animate>
+          Built4Vision helps local businesses look stronger online through modern websites, ongoing support,
+          and original branded content.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       CONTACT PANEL
+       Opens on any CTA click with the relevant offer preselected.
+  ============================================================ -->
+  <div class="contact-panel" id="contact-panel" role="dialog" aria-modal="true" aria-labelledby="contact-heading" hidden>
+    <div class="contact-panel__backdrop" data-close-panel></div>
+    <div class="contact-panel__sheet">
+      <button class="contact-panel__close" type="button" data-close-panel aria-label="Close contact form">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 5.71 12 12l6.3 6.29-1.42 1.42L10.59 13.4 4.3 19.71 2.88 18.3 9.17 12 2.88 5.71 4.3 4.29l6.29 6.3 6.29-6.3z"/></svg>
+      </button>
+
+      <div class="contact-panel__content">
+        <h2 id="contact-heading">Let's build it</h2>
+        <p class="contact-panel__sub">Tell us where to reach you and we'll follow up personally.</p>
+
+        <!-- Placeholder endpoint: replace action with your real form handler (e.g. Formspree, Netlify Forms) -->
+        <form id="contact-form" data-form-endpoint="https://formspree.io/f/REPLACE_WITH_FORM_ID">
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name" />
+          </div>
+
+          <div class="field">
+            <label for="cf-business">Business name</label>
+            <input id="cf-business" name="business" type="text" autocomplete="organization" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="cf-phone">Phone</label>
+              <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="cf-offer">Selected offer</label>
+            <select id="cf-offer" name="offer">
+              <option value="package">Built4Vision Website + Brand Package — $197/month</option>
+              <option value="song">Song Only — $49 one time</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="3"></textarea>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit">Send</button>
+        </form>
+
+        <div class="contact-panel__success" id="contact-success" hidden>
+          <svg class="icon icon--lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+          <h3>Message sent</h3>
+          <p>Thanks — we'll be in touch shortly to get everything set up.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer__made">Created for <span data-config="businessName">Razors Edge</span> by <span data-config="builtByName">Built4Vision</span></p>
+      <p class="footer__tag">Websites. Brand content. Custom business music.</p>
+      <a class="footer__link" data-config-href="builtByUrl" data-config="builtByUrlText" href="https://built4vision.net">built4vision.net</a>
+      <a class="footer__link footer__link--email" data-config-href="contactEmailHref" data-config="contactEmail" href="mailto:hello@built4vision.net">hello@built4vision.net</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
