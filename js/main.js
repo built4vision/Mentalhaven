@@ -32,18 +32,24 @@ function renderPaymentPlaceholders() {
 
 /* ==========================================================================
    AUDIO PLAYER
+   Called once per player instance on the page. `idSuffix` targets a
+   distinct set of element IDs (e.g. "-2" for the second sample), and
+   `playAgainKey` scopes which [data-play-again] buttons control this
+   specific instance, so multiple independent players can coexist
+   without one's controls accidentally triggering another's audio.
    ========================================================================== */
-function initPlayer() {
-  const audio = document.getElementById("anthem-audio");
-  const playToggle = document.getElementById("play-toggle");
-  const restartBtn = document.getElementById("restart-btn");
-  const seek = document.getElementById("seek");
-  const volume = document.getElementById("volume");
-  const timeElapsed = document.getElementById("time-elapsed");
-  const timeTotal = document.getElementById("time-total");
-  const fallback = document.getElementById("player-fallback");
-  const waveBase = document.getElementById("wave-base");
-  const waveProgress = document.getElementById("wave-progress");
+function initPlayer({ idSuffix = "", playAgainKey = "main", previewStartSeconds = 0, previewEndSeconds = null } = {}) {
+  const audio = document.getElementById(`anthem-audio${idSuffix}`);
+  const playToggle = document.getElementById(`play-toggle${idSuffix}`);
+  const restartBtn = document.getElementById(`restart-btn${idSuffix}`);
+  const seek = document.getElementById(`seek${idSuffix}`);
+  const volume = document.getElementById(`volume${idSuffix}`);
+  const timeElapsed = document.getElementById(`time-elapsed${idSuffix}`);
+  const timeTotal = document.getElementById(`time-total${idSuffix}`);
+  const fallback = document.getElementById(`player-fallback${idSuffix}`);
+  const waveBase = document.getElementById(`wave-base${idSuffix}`);
+  const waveProgress = document.getElementById(`wave-progress${idSuffix}`);
+  if (!audio || !playToggle) return;
 
   const iconPlay = playToggle.querySelector(".icon--play");
   const iconPause = playToggle.querySelector(".icon--pause");
@@ -52,10 +58,10 @@ function initPlayer() {
   let duration = 0;
   let seeking = false;
 
-  // Sales-page preview window: only this slice of the file plays here.
-  // The unclipped file is only ever linked from the post-purchase page.
-  const previewStart = CONFIG.previewStartSeconds || 0;
-  const previewEnd = typeof CONFIG.previewEndSeconds === "number" ? CONFIG.previewEndSeconds : null;
+  // Preview window: only this slice of the file plays here. The unclipped
+  // file is only ever linked from the post-purchase page.
+  const previewStart = previewStartSeconds || 0;
+  const previewEnd = typeof previewEndSeconds === "number" ? previewEndSeconds : null;
   const previewEnabled = previewEnd !== null && previewEnd > previewStart;
 
   function formatTime(seconds) {
@@ -127,7 +133,7 @@ function initPlayer() {
     }
   });
 
-  document.querySelectorAll("[data-play-again]").forEach((btn) => {
+  document.querySelectorAll(`[data-play-again="${playAgainKey}"]`).forEach((btn) => {
     btn.addEventListener("click", () => play());
   });
 
@@ -188,7 +194,7 @@ function initPlayer() {
   audio.addEventListener("error", () => {
     fallback.hidden = false;
     playToggle.disabled = true;
-    document.querySelectorAll("[data-play-again]").forEach((btn) => {
+    document.querySelectorAll(`[data-play-again="${playAgainKey}"]`).forEach((btn) => {
       btn.disabled = true;
     });
   });
@@ -297,7 +303,18 @@ function initScrollCues() {
 document.addEventListener("DOMContentLoaded", () => {
   applyConfig();
   renderPaymentPlaceholders();
-  initPlayer();
+  initPlayer({
+    idSuffix: "",
+    playAgainKey: "main",
+    previewStartSeconds: CONFIG.previewStartSeconds,
+    previewEndSeconds: CONFIG.previewEndSeconds,
+  });
+  initPlayer({
+    idSuffix: "-2",
+    playAgainKey: "second",
+    previewStartSeconds: CONFIG.secondPreviewStartSeconds,
+    previewEndSeconds: CONFIG.secondPreviewEndSeconds,
+  });
   initContactPanel();
   initAnimations();
   initScrollCues();

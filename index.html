@@ -168,6 +168,72 @@
           <li>Your willingness to openly praise God</li>
           <li>The confidence you help create every day</li>
         </ul>
+
+        <!-- ============================================================
+             SECOND SAMPLE — a different moment from the song, further
+             in (a likely hook/chorus window). Independent player
+             instance; see js/main.js initPlayer() and js/config.js
+             secondPreviewStartSeconds/secondPreviewEndSeconds.
+        ============================================================ -->
+        <div class="mini-player" data-animate>
+          <audio id="anthem-audio-2" preload="metadata" data-config-src="audioSrc">
+            <source src="audio/razors-edge-anthem.mp3" type="audio/mpeg" data-config-src="audioSrc" />
+          </audio>
+
+          <button class="mini-player__play" id="play-toggle-2" type="button" aria-label="Play another moment from the anthem">
+            <svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+
+          <p class="mini-player__label">One more moment from the song</p>
+
+          <div class="release-card__controls">
+            <button class="player__restart" id="restart-btn-2" type="button" aria-label="Restart this preview">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+            </button>
+
+            <div class="player__scrub">
+              <div class="waveform" id="waveform-2" aria-hidden="true">
+                <div class="waveform__layer waveform__layer--base" id="wave-base-2"></div>
+                <div class="waveform__layer waveform__layer--progress" id="wave-progress-2"></div>
+              </div>
+              <input
+                type="range"
+                id="seek-2"
+                class="seek"
+                min="0"
+                max="1000"
+                value="0"
+                step="1"
+                aria-label="Seek position in this preview"
+              />
+            </div>
+
+            <div class="player__time" aria-live="off">
+              <span id="time-elapsed-2">0:00</span>
+              <span class="player__time-sep">/</span>
+              <span id="time-total-2">0:00</span>
+            </div>
+
+            <div class="player__volume">
+              <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4h4l5 5V5L7 10H3z"/></svg>
+              <input
+                type="range"
+                id="volume-2"
+                class="volume"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.85"
+                aria-label="Volume"
+              />
+            </div>
+          </div>
+
+          <p class="player__fallback" id="player-fallback-2" hidden>
+            Audio file not found — add <code>audio/razors-edge-anthem.mp3</code> to enable playback.
+          </p>
+        </div>
       </div>
 
       <!-- Full-bleed shop photo. If images/shop-photo.jpg is missing, this simply hides. -->
@@ -203,7 +269,7 @@
     <section class="section" id="pivot" aria-label="Pivot">
       <div class="wrap wrap--narrow">
         <p class="pivot-line" data-animate>Imagine what we could build together.</p>
-        <button class="play-again" type="button" data-play-again data-scroll-to="#main">
+        <button class="play-again" type="button" data-play-again="main" data-scroll-to="#main">
           <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
           Hear it again
         </button>

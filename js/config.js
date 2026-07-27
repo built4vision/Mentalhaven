@@ -20,6 +20,14 @@ const CONFIG = {
   previewStartSeconds: 0,
   previewEndSeconds: 30,
 
+  // Second preview, further into the song (a likely chorus/hook window
+  // rather than the intro again), shown after the story section. Same
+  // loop-back behavior as the hero preview. Spot-check this once per song —
+  // most tracks put a strong hook somewhere around here, but confirm it
+  // actually lands well before launch.
+  secondPreviewStartSeconds: 60,
+  secondPreviewEndSeconds: 90,
+
   cityState: "Newark, Delaware",
   address: "1450 Capital Trail, Newark, Delaware 19711",
 
