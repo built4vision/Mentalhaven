@@ -45,15 +45,13 @@ const CONFIG = {
   logoImage: "images/logo.svg",
 
   // ------------------------------------------------------------------------
-  // POST-PURCHASE DELIVERABLES (thank-you page)
+  // POST-PURCHASE DELIVERABLE (thank-you page)
   // Point Stripe's Payment Link "after payment" redirect at thank-you/index.html.
-  // Each file is checked for existence at load time — if it's not there yet,
+  // The file is checked for existence at load time — if it's not there yet,
   // the thank-you page shows a "still being prepared" note instead of a
-  // broken download link, so it's safe to launch before every edit exists.
+  // broken download link.
   // ------------------------------------------------------------------------
   fullSongDownloadSrc: "audio/razors-edge-anthem.mp3",
-  socialEdit15Src: "audio/razors-edge-anthem-15s.mp3",
-  socialEdit30Src: "audio/razors-edge-anthem-30s.mp3",
 };
 
 /* ==========================================================================
