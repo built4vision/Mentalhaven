@@ -29,7 +29,7 @@ const CONFIG = {
   // Leaving a value as "#" renders it as a disabled "(add link)" placeholder.
   paymentLinks: {
     package: {
-      stripe: "#",
+      stripe: "https://buy.stripe.com/eVq3cv5HR30jgWd6lQ4sE00",
       paypal: "#",
     },
     song: {

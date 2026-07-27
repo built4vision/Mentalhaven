@@ -210,7 +210,18 @@ function initContactPanel() {
   }
 
   document.querySelectorAll("[data-offer]").forEach((btn) => {
-    btn.addEventListener("click", () => openPanel(btn.dataset.offer));
+    btn.addEventListener("click", () => {
+      const offerKey = btn.dataset.offer;
+      const stripeLink = CONFIG.paymentLinks[offerKey] && CONFIG.paymentLinks[offerKey].stripe;
+      // Once a real Stripe link exists for this offer, skip the inquiry
+      // form entirely and go straight to checkout. The form stays as a
+      // fallback for any offer that doesn't have a live link yet.
+      if (stripeLink && stripeLink !== "#") {
+        window.location.href = stripeLink;
+      } else {
+        openPanel(offerKey);
+      }
+    });
   });
 
   document.querySelectorAll("[data-close-panel]").forEach((el) => {
