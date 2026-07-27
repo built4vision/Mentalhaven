@@ -33,7 +33,7 @@ const CONFIG = {
       paypal: "#",
     },
     song: {
-      stripe: "#",
+      stripe: "https://buy.stripe.com/14AfZhdajeJ1cFXh0u4sE01",
       paypal: "#",
     },
   },
