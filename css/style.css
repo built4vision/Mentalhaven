@@ -901,6 +901,21 @@ img {
 .offer__list li:first-child {
   border-top: none;
 }
+
+.offer__list--check li {
+  position: relative;
+  padding: 0.45rem 0 0.45rem 1.7rem;
+  border-top: none;
+}
+.offer__list--check li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
 .offer__note {
   text-align: center;
   font-size: 0.8rem;
