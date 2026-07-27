@@ -19,8 +19,8 @@ const CONFIG = {
   builtByUrlText: "built4vision.net",
 
   // EDIT: replace with the real inbox this business should reach.
-  contactEmail: "hello@built4vision.net",
-  contactEmailHref: "mailto:hello@built4vision.net",
+  contactEmail: "info@built4vision.com",
+  contactEmailHref: "mailto:info@built4vision.com",
 
   packagePrice: "$197",
   songPrice: "$49",
