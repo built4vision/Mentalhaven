@@ -168,7 +168,7 @@ function initScheduleForm() {
       ``,
       `Requested time: ${selected.value}`,
       ``,
-      `(Sent from the Razors Edge onboarding page — please confirm this time works.)`,
+      `(Sent from the ${CONFIG.businessName} onboarding page — please confirm this time works.)`,
     ];
     const mailto = `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
 
